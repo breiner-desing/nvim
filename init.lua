@@ -1,9 +1,11 @@
-require("config/configBasic/init")
-require("config/atajoTeclado/init")
-require("config/plugin/init")
-require("config/icons/init")
-require("config/lualine/init")
-require("config/telescope/init")
+--loadfile('configbasic.init')()
+
+require 'configbasic.init'
+require 'atajoteclado.init'
+require 'plugin.init'
+require 'icons.init'
+require 'barraestado.init'
+require 'telescopes.init'
 
 --require("airblade").startup()
 
@@ -23,4 +25,3 @@ local x = 'Breiner Andres Rojas Angulo'
 --    "path": "/path/to/jdk-8",
 --  }]
 --}
-
