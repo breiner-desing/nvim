@@ -14,7 +14,7 @@ con eso deberia ser capaz de utilizarse, si despues de eso no vez reflejado el c
 
     Move-Item -Path "$env:LOCALAPPDATA\nvim\lua" -Destination "$env:PROGRAMFILES/Neovim/bin" # movilizar la carpeta
 
-    New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\nvim\lua" -Target "$env:PROGRAMFILES\Neovim\bin\lua" #crear un file symbolic
+    New-Item -ItemType SymbolicLink -Path "$env:PROGRAMFILES\Neovim\bin\lua\lua" -Target "$env:LOCALAPPDATA\nvim\lua"
 
 
 
