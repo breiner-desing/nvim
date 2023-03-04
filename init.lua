@@ -1,11 +1,11 @@
 --loadfile('configbasic.init')()
 
-require 'configbasic.init'
-require 'atajoteclado.init'
-require 'plugin.init'
-require 'icons.init'
-require 'barraestado.init'
-require 'telescopes.init'
+require 'lua.configbasic.init'
+require 'lua.atajoteclado.init'
+require 'lua.plugin.init'
+require 'lua.icons.init'
+require 'lua.barraestado.init'
+require 'lua.telescopes.init'
 
 --require("airblade").startup()
 
