@@ -6,9 +6,16 @@ require 'lua.plugin.init'
 require 'lua.icons.init'
 require 'lua.barraestado.init'
 require 'lua.telescopes.init'
+require 'lua.maso.init'
+require 'ftplugin.java'
+
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+
+lsp.setup()
 
 --require("airblade").startup()
-
+--lombok_path
 vim.cmd[[colorscheme tokyonight]]
 
 --proximamente
