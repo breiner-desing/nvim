@@ -1,34 +1,22 @@
---loadfile('configbasic.init')()
 
-require 'lua.configbasic.init'
-require 'lua.atajoteclado.init'
-require 'lua.plugin.init'
-require 'lua.icons.init'
-require 'lua.barraestado.init'
-require 'lua.telescopes.init'
-require 'lua.maso.init'
+require 'configbasic'
+require 'atajoteclado'
+require 'plugin'
+--require 'icons'
+require 'barraestado'
+require 'telescopes'
+require 'maso'
 require 'ftplugin.java'
+require 'lzp'
+require 'lua-server'
+require 'treesitter'
 
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
+--vim.cmd[[colorscheme tokyonight]]
 
-lsp.setup()
-
---require("airblade").startup()
---lombok_path
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme tokyonight-night]]
+--vim.cmd[[colorscheme tokyonight-storm]]
+--vim.cmd[[colorscheme tokyonight-day]]
+--vim.cmd[[colorscheme tokyonight-moon]]
 
 --proximamente
 --require("config/treesitter/init.lua")
---
---implementation the COC 
-local x = 'Breiner Andres Rojas Angulo'
-
-
---local configuracion = {
---"java.configuration.runtimes": [
---  {
---    "name": "JavaSE-1.8",
---    "path": "/path/to/jdk-8",
---  }]
---}

@@ -7,32 +7,39 @@ end
 
 return require('packer').startup(function(use)
 
-	use  'wbthomason/packer.nvim'
+	 use  'wbthomason/packer.nvim'
 
-	--optional, for file icons
- 	use {	'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' }, tag = 'nightly'	}
+	 --optional, for file icons
+-- 	use {	'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' }, tag = 'nightly'	}
 
-	use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+ 	use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
 
-	--tag = '0.1.1' or branch = '0.1.x'
-	use { 'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { {'nvim-lua/plenary.nvim'} } }
+ 	--tag = '0.1.1' or branch = '0.1.x'
+	 use { 'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { {'nvim-lua/plenary.nvim'} } }
 
   use 'folke/tokyonight.nvim'
-  
-	use { 'lewis6991/gitsigns.nvim' }
+
+	 use { 'lewis6991/gitsigns.nvim' }
 
 
+	 use { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate' }  -- run = ':TSUpdate'
 
+--  use {
+--    'nvim-treesitter/nvim-treesitter',
+--    run = function()
+--        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+--        ts_update()
+--    end,
+--  }
 
-
-	--use { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate' }
-  
 	--Autocomplate
 --	use {'neoclide/coc.nvim', branch = 'release' }
 
-	use "williamboman/mason.nvim"
+-- lps
 
-	use 'mfussenegger/nvim-jdtls'
+	 use "williamboman/mason.nvim"
+
+	 use 'mfussenegger/nvim-jdtls'
 
   use 'neovim/nvim-lspconfig'
 
@@ -57,7 +64,9 @@ return require('packer').startup(function(use)
     }
   }
 
---	use 'neovim/nvim-lspconfig'
+  -- Git 
+  use 'airblade/vim-gitgutter'
+  use 'tpope/vim-fugitive'
 
 	if packer_bootstrap then require("packer").sync() end
 

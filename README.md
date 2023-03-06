@@ -16,6 +16,8 @@ con eso deberia ser capaz de utilizarse, si despues de eso no vez reflejado el c
 
     New-Item -ItemType SymbolicLink -Path "$env:PROGRAMFILES\Neovim\bin\lua\lua" -Target "$env:LOCALAPPDATA\nvim\lua"
 
+se nesesita tener un compilador para poder usar treesitter
 
+    scoop install zig
 
 

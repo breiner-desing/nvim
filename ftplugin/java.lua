@@ -128,26 +128,18 @@ local config = {
     },
   },
 
---lombok_path  flags = {
---    allow_incremental_sync = true,
---lombok_path-  },
---  init_options = {
---    bundles = {},
---  },
+		flags = {
+    allow_incremental_sync = true,
+  },
+  init_options = {
+    bundles = {},
+  },
+
 }
 
---config['on_attach'] = function(client, bufnr)
---  require'keymaps'.map_java_keys(bufnr);
---  require "lsp_signature".on_attach({
---    bind = true, -- This is mandatory, otherwise border config won't get registered.
---    floating_window_above_cur_line = false,
---    padding = '',
---    handler_opts = {
---      border = "rounded"
---    }
---  }, bufnr)
---end
-
+config['on_attach'] = function(client, bufnr)
+  local map = require 'atajoteclado'.map_java();
+end
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require('jdtls').start_or_attach(config)

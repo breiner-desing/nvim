@@ -9,4 +9,5 @@ opt.mouse = 'a'
 opt.ignorecase = true
 opt.smartcase = true
 opt.wrap = true
-opt.tabstop = 2
+opt.tabstop = 1
+opt.signcolumn = 'yes'
