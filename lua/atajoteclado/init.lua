@@ -36,12 +36,12 @@ map('n', '<space>q', vim.diagnostic.setloclist)
 map("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>")
 
 -- Telescope
-map('n', '<leader>bs', builtin.find_files) -- { desc = 'buscador de archivos' }
+map('n', 'bs', builtin.find_files) -- { desc = 'buscador de archivos' }
 map('n', '<leader>g', builtin.live_grep)  -- { desc = 'Buscador de palabras' }
 map('n', '<leader>d', builtin.buffers)  -- { desc = 'Buscador cambios git' }
 map('n', '<leader>bh', builtin.help_tags)
-map('n', '<leader>bc', builtin.git_commits) -- { desc = 'buscar commit' } 
-map('n', '<leader>br', builtin.git_branches) -- { desc = 'buscar ramas' } 
+map('n', 'bc', builtin.git_commits) -- { desc = 'buscar commit' } 
+map('n', 'br', builtin.git_branches) -- { desc = 'buscar ramas' } 
 map('n', '<leader>bst', builtin.git_status) -- { desc = 'git status' }
 
 -- java 
