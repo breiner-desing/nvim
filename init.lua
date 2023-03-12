@@ -10,8 +10,9 @@ require 'ftplugin.java'
 require 'lzp'
 require 'lua-server'
 require 'treesitter'
-
+--require 'comment-config'
 --vim.cmd[[colorscheme tokyonight]]
+--require('Comment').setup()
 
 vim.cmd[[colorscheme tokyonight-night]]
 --vim.cmd[[colorscheme tokyonight-storm]]

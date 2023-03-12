@@ -68,6 +68,13 @@ return require('packer').startup(function(use)
   use 'airblade/vim-gitgutter'
   use 'tpope/vim-fugitive'
 
+		use {
+    'numToStr/Comment.nvim',
+     config = function()
+        require('Comment').setup()
+    end
+  }
+
 	if packer_bootstrap then require("packer").sync() end
 
 
