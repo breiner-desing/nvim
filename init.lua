@@ -10,9 +10,25 @@ require 'ftplugin.java'
 require 'lzp'
 require 'lua-server'
 require 'treesitter'
---require 'comment-config'
---vim.cmd[[colorscheme tokyonight]]
---require('Comment').setup()
+
+local cmp = require('cmp')
+
+cmp.setup({
+  enabled = function()
+    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+        or require("cmp_dap").is_dap_buffer()
+  end
+})
+
+cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+  sources = {
+    { name = "dap" },
+  },
+})
+
+
+
+
 
 vim.cmd[[colorscheme tokyonight-night]]
 --vim.cmd[[colorscheme tokyonight-storm]]

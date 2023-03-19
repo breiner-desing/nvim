@@ -15,6 +15,7 @@ local path_to_lsp_server = jdtls_path .. "/config_win"
 local path_to_plugins = jdtls_path .. "/plugins/"
 local path_to_jar = path_to_plugins .. "org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
 local lombok_path = jdtls_path .. "./lombok.jar"
+local path_to_java_dap = 'C:/Users/brein/AppData/Local/debugger-java/'
 
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
@@ -25,6 +26,9 @@ end
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace-root/' .. project_name
 os.execute("mkdir " .. workspace_dir)
+
+local extendedClientCapabilities = require 'jdtls'.extendedClientCapabilities
+extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 -- Main Config
 local config = {
@@ -132,13 +136,17 @@ local config = {
     allow_incremental_sync = true,
   },
   init_options = {
-    bundles = {},
+    bundles = {
+								vim.fn.glob(path_to_java_dap .. 'com.microsoft.java.debug.plugin-0.44.0.jar', 1)
+				},
   },
 
 }
 
 config['on_attach'] = function(client, bufnr)
   local map = require 'atajoteclado'.map_java();
+  --require('jdtls.dap').setup_dap_main_class_configs()
+		require 'jdtls'.setup_dap({ hotcodereplace = 'auto' })
 end
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.

@@ -54,7 +54,72 @@ function keymap.map_java()
   map("n", "<leader>de", "<Cmd>lua require('jdtls').extract_variable()<CR>")
   map("v", "<leader>dm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>")
 
+		map("n", "<F9>", function() run_spring_boot() end)
+  map("n", "<F10>", function() run_spring_boot(true) end)
+
 end
 
+function get_spring_boot_runner(profile, debug)
+  local debug_param = ""
+  if debug then
+    debug_param = ' -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005" '
+  end 
+
+  local profile_param = ""
+  if profile then
+    profile_param = " -Dspring-boot.run.profiles=" .. profile .. " "
+  end
+--.. profile_param .. debug_param
+  print('mvn spring-boot:run '.. profile_param .. debug_param)
+
+  return ' mvn spring-boot:run ' .. debug_param
+ 
+		end
+
+function run_spring_boot(debug)
+ 
+  vim.cmd('term ' .. 'mvn clean && mvn compile && ' .. get_spring_boot_runner(method_name, debug))
+  attach_to_debug()
+  --vim.cmd('term ' .. get_spring_boot_runner(method_name, debug))
+end
+
+local dap = require('dap')
+
+function attach_to_debug()
+
+local date_server = {
+      type = 'java';
+      request = 'attach';
+      name = "Attach to the process";
+      hostName = 'localhost';
+      port = '5005';
+    }
+
+		  dap.configurations.java = {date_server}
+		
+  dap.continue()
+end 
+
+-- view informations in debug
+function show_dap_centered_scopes()
+  local widgets = require'dap.ui.widgets'
+  widgets.centered_float(widgets.scopes)
+end
+
+map('n', '<leader>da', ':lua attach_to_debug()<CR>')
+
+-- setup debug
+map('n', '<leader>b', ':lua require"dap".toggle_breakpoint()<CR>')
+map('n', '<leader>B', ':lua require"dap".set_breakpoint(vim.fn.input("Condition: "))<CR>')
+map('n', '<leader>bl', ':lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log: "))<CR>')
+map('n', '<leader>dr', ':lua require"dap".repl.open()<CR>')
+
+map('n', 'gs', ':lua show_dap_centered_scopes()<CR>')
+
+-- move in debug
+map('n', '<F5>', ':lua require"dap".continue()<CR>')
+map('n', '<F8>', ':lua require"dap".step_over()<CR>')
+map('n', '<F7>', ':lua require"dap".step_into()<CR>')
+map('n', '<S-F8>', ':lua require"dap".step_out()<CR>')
 
 return keymap

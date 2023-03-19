@@ -68,6 +68,9 @@ return require('packer').startup(function(use)
   use 'airblade/vim-gitgutter'
   use 'tpope/vim-fugitive'
 
+  use 'mfussenegger/nvim-dap'
+  use 'rcarriga/cmp-dap'
+
 		use {
     'numToStr/Comment.nvim',
      config = function()
