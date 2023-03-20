@@ -17,7 +17,7 @@ local path_to_jar = path_to_plugins .. "org.eclipse.equinox.launcher_1.6.400.v20
 local lombok_path = jdtls_path .. "./lombok.jar"
 local path_to_java_dap = 'C:/Users/brein/AppData/Local/debugger-java/'
 
-local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+local root_markers = { "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
 if root_dir == "" then
   return
@@ -26,9 +26,6 @@ end
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace-root/' .. project_name
 os.execute("mkdir " .. workspace_dir)
-
-local extendedClientCapabilities = require 'jdtls'.extendedClientCapabilities
-extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 -- Main Config
 local config = {

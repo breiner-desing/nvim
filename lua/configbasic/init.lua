@@ -11,3 +11,5 @@ opt.smartcase = true
 opt.wrap = true
 opt.tabstop = 1
 opt.signcolumn = 'yes'
+
+vim.cmd[[colorscheme tokyonight-night]]

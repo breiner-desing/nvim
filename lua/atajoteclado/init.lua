@@ -9,6 +9,13 @@ end
 
 -- General
 
+map('n', '<', ':wincmd < <CR>') -- {  }
+map('n', '>', ':wincmd > <CR>') -- {  }
+
+--También puedes ejecutar gt para ir a la siguiente pestaña (con gT vas a la pestaña previa). 
+--También puedes pasar un número como argumento a gt, donde el número corresponde al número de la pestaña. 
+--Para ir a la tercera pestaña, ejecuta 3gt.
+
 map({'i','n'},'<leader>s', '<cmd>write<cr>') -- { desc = 'guardar' }
 map('n','<C-s>', '<cmd>write<cr>') -- { desc = 'guardar' }
 --map('n', '<C-b>', '<cmd>:NvimTreeToggle<cr>') -- { desc = 'desplegar menu' }
@@ -44,8 +51,9 @@ map('n', 'bc', builtin.git_commits) -- { desc = 'buscar commit' }
 map('n', 'br', builtin.git_branches) -- { desc = 'buscar ramas' } 
 map('n', '<leader>bst', builtin.git_status) -- { desc = 'git status' }
 
+
 -- java 
-function keymap.map_java()  
+function keymap.map_java()
 
   map('n', '<C-a>', ":lua require'jdtls'.organize_imports() <CR>")  -- { desc = 'traer importaciones' }
   map("n", "<leader>dt", "<Cmd>lua require'jdtls'.test_class()<CR>")
@@ -54,72 +62,51 @@ function keymap.map_java()
   map("n", "<leader>de", "<Cmd>lua require('jdtls').extract_variable()<CR>")
   map("v", "<leader>dm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>")
 
-		map("n", "<F9>", function() run_spring_boot() end)
-  map("n", "<F10>", function() run_spring_boot(true) end)
+		map("n", "<F9>", function() require 'atajoteclado.debug-java'.run_spring_boot() end)
+  map("n", "<F10>", function() require 'atajoteclado.debug-java'.run_spring_boot(true) end)
+--		debug()
 
 end
 
-function get_spring_boot_runner(profile, debug)
-  local debug_param = ""
-  if debug then
-    debug_param = ' -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005" '
-  end 
 
-  local profile_param = ""
-  if profile then
-    profile_param = " -Dspring-boot.run.profiles=" .. profile .. " "
-  end
---.. profile_param .. debug_param
-  print('mvn spring-boot:run '.. profile_param .. debug_param)
+--function debug()
 
-  return ' mvn spring-boot:run ' .. debug_param
- 
-		end
+  map('n', '<leader>da', function() require 'atajoteclado.debug-java'.attach_to_debug() end)
 
-function run_spring_boot(debug)
- 
-  vim.cmd('term ' .. 'mvn clean && mvn compile && ' .. get_spring_boot_runner(method_name, debug))
-  attach_to_debug()
-  --vim.cmd('term ' .. get_spring_boot_runner(method_name, debug))
+   -- setup debug
+  map('n', '<leader>b', function() require"dap".toggle_breakpoint() end)
+  map('n', '<leader>B', function() require"dap".set_breakpoint(vim.fn.input("Condition: ")) end)
+  map('n', '<leader>bl', function() require"dap".set_breakpoint(nil, nil, vim.fn.input("Log: ")) end)
+  map('n', '<leader>dr', function() require"dap".repl.open() end)
+
+  map('n', 'gs',  function() require 'atajoteclado.debug-java'.show_dap_centered_scopes() end)
+
+ -- move in debug
+   map('n', '<F5>', function() require"dap".continue() end)
+   map('n', '<F8>', function() require"dap".step_over() end)
+   map('n', '<F7>', function() require"dap".step_into() end)
+   map('n', '<S-F8>', function() require"dap".step_out() end)
+
+--end
+
+function keymap.buffer()
+
+			for i=1,9 do
+			   map('n', '<leader>' .. i , function() require("bufferline").go_to_buffer(i, true) end )
+			end
+
+   map('n', '[b', ':BufferLineCycleNext <CR>')
+   map('n', 'b]', ':BufferLineCyclePrev <CR>')
+   map('n', '<A-S-l>', ':BufferLineMoveNext <CR>')
+   map('n', '<A-S-h>', ':BufferLineMovePrev <CR>')
+--     nnoremap <silent><mymap> :lua require'bufferline'.move_to(1)<CR>  -- mover a primer lugar
+--     nnoremap <silent><mymap> :lua require'bufferline'.move_to(-1)<CR> -- mover a ultimo lugar
+--     nnoremap <silent>be :BufferLineSortByExtension<CR>
+--     nnoremap <silent>bd :BufferLineSortByDirectory<CR>
+--     nnoremap <silent><mymap> :lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>
+
 end
 
-local dap = require('dap')
-
-function attach_to_debug()
-
-local date_server = {
-      type = 'java';
-      request = 'attach';
-      name = "Attach to the process";
-      hostName = 'localhost';
-      port = '5005';
-    }
-
-		  dap.configurations.java = {date_server}
-		
-  dap.continue()
-end 
-
--- view informations in debug
-function show_dap_centered_scopes()
-  local widgets = require'dap.ui.widgets'
-  widgets.centered_float(widgets.scopes)
-end
-
-map('n', '<leader>da', ':lua attach_to_debug()<CR>')
-
--- setup debug
-map('n', '<leader>b', ':lua require"dap".toggle_breakpoint()<CR>')
-map('n', '<leader>B', ':lua require"dap".set_breakpoint(vim.fn.input("Condition: "))<CR>')
-map('n', '<leader>bl', ':lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log: "))<CR>')
-map('n', '<leader>dr', ':lua require"dap".repl.open()<CR>')
-
-map('n', 'gs', ':lua show_dap_centered_scopes()<CR>')
-
--- move in debug
-map('n', '<F5>', ':lua require"dap".continue()<CR>')
-map('n', '<F8>', ':lua require"dap".step_over()<CR>')
-map('n', '<F7>', ':lua require"dap".step_into()<CR>')
-map('n', '<S-F8>', ':lua require"dap".step_out()<CR>')
 
 return keymap
+

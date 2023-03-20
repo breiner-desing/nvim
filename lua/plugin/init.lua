@@ -10,7 +10,7 @@ return require('packer').startup(function(use)
 	 use  'wbthomason/packer.nvim'
 
 	 --optional, for file icons
--- 	use {	'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' }, tag = 'nightly'	}
+ 	use {	'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' }	}
 
  	use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
 
@@ -70,6 +70,9 @@ return require('packer').startup(function(use)
 
   use 'mfussenegger/nvim-dap'
   use 'rcarriga/cmp-dap'
+
+		-- using packer.nvim
+  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
 		use {
     'numToStr/Comment.nvim',

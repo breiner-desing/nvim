@@ -1,8 +1,7 @@
 
-require 'configbasic'
-require 'atajoteclado'
 require 'plugin'
---require 'icons'
+require 'configbasic'
+--require 'atajoteclado'
 require 'barraestado'
 require 'telescopes'
 require 'maso'
@@ -10,6 +9,9 @@ require 'ftplugin.java'
 require 'lzp'
 require 'lua-server'
 require 'treesitter'
+require 'tree'
+require 'buffer'
+
 
 local cmp = require('cmp')
 
@@ -27,13 +29,26 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 })
 
 
+--require'lspconfig'.sumneko_lua.setup {}
 
 
+-- Define la clase CSS DapStoppedLine para la línea donde se encuentra la señal DapStopped
+--vim.cmd('highlight DapStoppedLine cterm=bold ctermfg=green guifg=green gui=underline')
 
-vim.cmd[[colorscheme tokyonight-night]]
---vim.cmd[[colorscheme tokyonight-storm]]
---vim.cmd[[colorscheme tokyonight-day]]
---vim.cmd[[colorscheme tokyonight-moon]]
+vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
 
+--vim.fn.sign_define('DapStopped', {text='→', texthl='', linehl='DapStoppedLine', numhl=''})
+
+-- `DapBreakpoint` for breakpoints (default: `B`)
+-- `DapBreakpointCondition` for conditional breakpoints (default: `C`)
+-- `DapLogPoint` for log points (default: `L`)
+-- `DapStopped` to indicate where the debugee is stopped (default: `→`)
+-- `DapBreakpointRejected` to indicate breakpoints rejected by the debug
+
+
+--
+--
 --proximamente()
 --require("config/treesitter/init.lua")
+--
+
