@@ -19,7 +19,7 @@ return require('packer').startup(function(use)
 
   use 'folke/tokyonight.nvim'
 
-	 use { 'lewis6991/gitsigns.nvim' }
+	 use 'lewis6991/gitsigns.nvim'
 
 
 	 use { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate' }  -- run = ':TSUpdate'
@@ -32,11 +32,7 @@ return require('packer').startup(function(use)
 --    end,
 --  }
 
-	--Autocomplate
---	use {'neoclide/coc.nvim', branch = 'release' }
-
--- lps
-
+  -- lps
 	 use "williamboman/mason.nvim"
 
 	 use 'mfussenegger/nvim-jdtls'
@@ -67,11 +63,12 @@ return require('packer').startup(function(use)
   -- Git 
   use 'airblade/vim-gitgutter'
   use 'tpope/vim-fugitive'
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+		-- Debug
   use 'mfussenegger/nvim-dap'
   use 'rcarriga/cmp-dap'
 
-		-- using packer.nvim
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
 		use {
