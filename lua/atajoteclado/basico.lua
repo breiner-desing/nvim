@@ -2,48 +2,45 @@ local basico = {}
 
 local buf = vim.lsp.buf
 
-function map( estado, atajo, comando)
-  vim.keymap.set(estado, atajo, comando)
+function map(estado, atajo, comando)
+	vim.keymap.set(estado, atajo, comando)
 end
 
-
 function basico.mapbasico()
+	map('n', '<', ':wincmd < <CR>') -- {  }
+	map('n', '>', ':wincmd > <CR>') -- {  }
 
-  map('n', '<', ':wincmd < <CR>') -- {  }
-  map('n', '>', ':wincmd > <CR>') -- {  }
+	-- atajos para nvim-tree.api
+	map('n', '<C-b>', function() require 'nvim-tree.api'.tree.toggle() end)
 
-  -- atajos para nvim-tree.api 
-		map('n', '<C-b>', function() require 'nvim-tree.api'.tree.toggle() end )
+	map({ 'i', 'n' }, '<leader>s', '<cmd>write<cr>') -- { desc = 'guardar' }
+	map('n', '<C-s>', '<cmd>write<cr>')    -- { desc = 'guardar' }
+	map('i', '<C-z>', '<cmd>:u <CR>')      -- { desc = 'descartar cambios' }
+	map('i', '<C-R>', '<cmd>:r <CR>')      -- { desc = 'descartar cambios' }
 
-		map({'i','n'},'<leader>s', '<cmd>write<cr>') -- { desc = 'guardar' }
-  map('n','<C-s>', '<cmd>write<cr>') -- { desc = 'guardar' }
-  map('i','<C-z>','<cmd>:u <CR>') -- { desc = 'descartar cambios' } 
-  map('i','<C-R>','<cmd>:r <CR>') -- { desc = 'descartar cambios' } 
+	map('n', 'gd', function() buf.definition() end)
+	map('n', 'gD', function() buf.declaration() end)                                          -- {  desc = ''  }
+	map('n', '<leader>k', function() buf.hover() end)                                         -- { desc = 'ventana informativa' }  en prueba
+	map('n', 'gi', function() buf.implementation() end)                                       -- { desc = 'ir a la funcion declarada' }
+	map('n', '<leader>ck', function() buf.signature_help() end)                               -- { desc = 'informacion de la funcion del metodo llamado' }
+	map('n', '<leader>wa', function() buf.add_workspace_folder() end)                         -- { desc = 'agregar espacio de trabajo' }
+	map('n', '<leader>wr', function() buf.remove_workspace_folder() end)                      -- { desc = 'eliminar carpet de espacio de trabajo' }
+	map('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>') -- { desc = 'ubicacion proyecto raiz' }
+	map('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+	map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')                               -- { renombrar variable }
+	map('n', 'gr', '<cmd>lua vim.lsp.buf.references() && vim.cmd("copen")<CR>')
 
-		map('n', 'gd', function() buf.definition() end )
-  map('n', 'gD', function() buf.declaration() end ) -- {  desc = ''  }
-  map('n', '<leader>k', function() buf.hover() end) -- { desc = 'ventana informativa' }  en prueba
-  map('n', 'gi', function() buf.implementation() end) -- { desc = 'ir a la funcion declarada' }
-  map('n', '<leader>ck', function() buf.signature_help() end)  -- { desc = 'informacion de la funcion del metodo llamado' }
-  map('n', '<leader>wa', function() buf.add_workspace_folder() end) -- { desc = 'agregar espacio de trabajo' } 
-  map('n', '<leader>wr', function() buf.remove_workspace_folder() end) -- { desc = 'eliminar carpet de espacio de trabajo' }
-  map('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')  -- { desc = 'ubicacion proyecto raiz' }
-  map('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')  -- { renombrar variable }
-  map('n', 'gr', '<cmd>lua vim.lsp.buf.references() && vim.cmd("copen")<CR>')
+	map('n', '<space>e', vim.diagnostic.open_float) -- { desc = 'descripcion del error' }
+	map('n', '[d', vim.diagnostic.goto_prev)  -- { desc = 'error anterior' }
+	map('n', ']d', vim.diagnostic.goto_next)  -- { desc = 'siguiente error' }
+	map('n', '<space>q', vim.diagnostic.setloclist)
 
-		map('n', '<space>e', vim.diagnostic.open_float) -- { desc = 'descripcion del error' }
-  map('n', '[d', vim.diagnostic.goto_prev) -- { desc = 'error anterior' }
-  map('n', ']d', vim.diagnostic.goto_next) -- { desc = 'siguiente error' }
-  map('n', '<space>q', vim.diagnostic.setloclist)
-
-  map("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>")
-
+	map("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format { async = true }<CR>")
 end
 
 return basico
 
--- `gcA` - Insert comment to end of the current line and enters INSERT mode 
+-- `gcA` - Insert comment to end of the current line and enters INSERT mode
 -- `gcc` - Toggles the current line using linewise comment
 -- `gbc` - Toggles the current line using blockwise comment
 -- `[count]gcc` - Toggles the number of line given as a prefix-count using linewise
@@ -169,7 +166,3 @@ return basico
 --     - ✓ ★ ✗ new file staged and has unstaged modifications
 --     - ═  merging
 --     - ➜  renamed
-
-
-
-

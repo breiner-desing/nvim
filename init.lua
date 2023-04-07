@@ -1,4 +1,4 @@
-
+vim.o.shell = "pwsh"
 require 'plugin'
 require 'configbasic'
 require 'atajoteclado'
@@ -11,7 +11,7 @@ require 'lua-server'
 require 'treesitter'
 require 'tree'
 require 'buffer'
-
+require 'git'
 
 local cmp = require('cmp')
 
@@ -28,6 +28,11 @@ cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
   },
 })
 
+--split | execute 'terminal'
+
+-- vim.lsp.set_log_level("warn")
+-- vim.lsp.set_log_level("error")
+require"fidget".setup{}
 
 --require'lspconfig'.sumneko_lua.setup {}
 
@@ -45,57 +50,9 @@ vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''
 -- `DapStopped` to indicate where the debugee is stopped (default: `→`)
 -- `DapBreakpointRejected` to indicate breakpoints rejected by the debug
 
-
---
---
 --proximamente()
 --require("config/treesitter/init.lua")
---
 
--- ===============================================================================
--- MAPPINGS                                                   *gitgutter-mappings*
---
--- You can disable all these mappings with:
---  
---     let g:gitgutter_map_keys = 0
---  
---
--- Hunk operations: 
---
--- These can be repeated with `.` if you have vim-repeat installed.
---
---                                                          *gitgutter-<Leader>hp*
--- <Leader>hp              Preview the hunk under the cursor.
---
---                                                          *gitgutter-<Leader>hs*
--- <Leader>hs              Stage the hunk under the cursor.
---
---                                                          *gitgutter-<Leader>hu*
--- <Leader>hu              Undo the hunk under the cursor.
---
--- You can change these mappings like this:
---  
---     nmap ghp <Plug>(GitGutterPreviewHunk)
---     nmap ghs <Plug>(GitGutterStageHunk)
---     nmap ghu <Plug>(GitGutterUndoHunk)
---  
---
--- Hunk jumping: 
---
---                                                                  *gitgutter-]c*
--- ]c                      Jump to the next [count] hunk.
---
---                                                                  *gitgutter-[c*
--- [c                      Jump to the previous [count] hunk.
---
--- You can change these mappings like this:
---  
---     nmap [c <Plug>(GitGutterPrevHunk)
---     nmap ]c <Plug>(GitGutterNextHunk)
---  
---
--- Hunk text object: 
---
 --                           *gitgutter-ic* *gitgutter-ac* *gitgutter-text-object*
 -- "ic" operates on the current hunk's lines.  "ac" does the same but also includes
 -- trailing empty lines.
@@ -104,9 +61,6 @@ vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''
 --     omap ac <Plug>(GitGutterTextObjectOuterPending)
 --     xmap ic <Plug>(GitGutterTextObjectInnerVisual)
 --     xmap ac <Plug>(GitGutterTextObjectOuterVisual)
---  
-
-
 
 
 
