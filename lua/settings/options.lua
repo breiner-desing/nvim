@@ -1,3 +1,4 @@
+vim.opt.termguicolors = true
 local wo = vim.wo
 local opt = vim.opt
 

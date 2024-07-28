@@ -36,83 +36,68 @@ Con eso debería ser capaz de utilizarse, si después de eso no ves reflejado el
 New-Item -ItemType SymbolicLink -Path "$env:PROGRAMFILES\Neovim\bin\lua\lua" -Target "$env:LOCALAPPDATA\nvim\lua"
 ```
 
-## Atajos de Teclado
+# Neovim Keybindings
 
-| Función                          | Atajo de Teclado                |
-|----------------------------------|---------------------------------|
-| Mover ventana hacia la izquierda | `<`                             |
-| Mover ventana hacia la derecha   | `>`                             |
-| Alternar `nvim-tree`             | `<C-b>`                         |
-| Guardar archivo                  | `<leader>s`, `<C-s>`            |
-| Deshacer cambios en modo insert  | `<C-z>`                         |
-| Rehacer cambios en modo insert   | `<C-R>`                         |
-| Ir a la definición               | `gd`                            |
-| Ir a la declaración              | `gD`                            |
-| Mostrar ventana informativa      | `<leader>k`                     |
-| Ir a la implementación           | `gi`                            |
-| Mostrar ayuda de firma           | `<leader>ck`                    |
-| Agregar carpeta al espacio de trabajo | `<leader>wa`               |
-| Eliminar carpeta del espacio de trabajo | `<leader>wr`             |
-| Listar carpetas del espacio de trabajo | `<leader>wl`             |
-| Mostrar definición del tipo      | `<leader>D`                     |
-| Renombrar símbolo                | `<leader>rn`                    |
-| Listar referencias               | `gr`                            |
-| Mostrar información del error    | `<space>e`                      |
-| Ir al error anterior             | `[d`                            |
-| Ir al siguiente error            | `]d`                            |
-| Abrir lista de diagnósticos      | `<space>q`                      |
-| Formatear código                 | `<leader>cf`                    |
-
-### Mapeos de Java
-
-| Función                          | Atajo de Teclado                |
-|----------------------------------|---------------------------------|
-| Organizar importaciones          | `<C-a>`                         |
-| Ejecutar prueba de clase         | `<leader>dt`                    |
-| Ejecutar prueba del método más cercano | `<leader>dn`             |
-| Extraer variable (modo visual)   | `<leader>de`                    |
-| Extraer variable                 | `<leader>de`                    |
-| Extraer método (modo visual)     | `<leader>dm`                    |
-| Ejecutar `Spring Boot`           | `<F9>`                          |
-| Ejecutar `Spring Boot` con depuración | `<F10>`                   |
-| Adjuntar al depurador            | `<leader>da`                    |
-| Alternar punto de interrupción   | `<leader>b>`                    |
-| Establecer punto de interrupción con condición | `<leader>B>`     |
-| Establecer punto de interrupción con registro | `<leader>bl>`     |
-| Abrir REPL de depuración         | `<leader>dr>`                   |
-| Mostrar alcances centrados de DAP | `gs`                           |
-| Continuar en depuración          | `<F5>`                          |
-| Paso por encima en depuración    | `<F8>`                          |
-| Paso dentro en depuración        | `<F7>`                          |
-| Paso fuera en depuración         | `<S-F8>`                        |
-
-### Buffer
-
-| Función                          | Atajo de Teclado                |
-|----------------------------------|---------------------------------|
-| Navegar entre buffers            | `<leader>1` a `<leader>9`       |
-| Siguiente buffer                 | `[b`                            |
-| Buffer anterior                  | `b]`                            |
-| Mover buffer hacia la derecha    | `<A-S-l>`                       |
-| Mover buffer hacia la izquierda  | `<A-S-h>`                       |
-
-### Terminal
-
-| Función                          | Atajo de Teclado                |
-|----------------------------------|---------------------------------|
-| Abrir terminal en split abajo    | `<leader>tJ`                    |
-| Abrir terminal en split a la derecha | `<leader>tL`               |
-| Abrir terminal flotante          | `<leader>ft`                    |
-| Buscar y abrir archivo `terminal.lua` | `<leader>rr`              |
-
-### Telescope
-
-| Función                          | Atajo de Teclado                |
-|----------------------------------|---------------------------------|
-| Buscar archivos                  | `bs`                            |
-| Buscar texto en el proyecto      | `<leader>g`                     |
-| Listar buffers                   | `<leader>d`                     |
-| Listar etiquetas de ayuda        | `<leader>bh`                    |
-| Buscar commits                   | `bc`                            |
-| Buscar ramas                     | `br`                            |
-| Estado de Git                    | `<leader>bst`                   |
+| Mode     | Key Binding                | Action                                                     |
+|----------|----------------------------|------------------------------------------------------------|
+| Normal   | `<leader>1`                | Go to buffer 1                                             |
+| Normal   | `<leader>2`                | Go to buffer 2                                             |
+| Normal   | `<leader>3`                | Go to buffer 3                                             |
+| Normal   | `<leader>4`                | Go to buffer 4                                             |
+| Normal   | `<leader>5`                | Go to buffer 5                                             |
+| Normal   | `<leader>6`                | Go to buffer 6                                             |
+| Normal   | `<leader>7`                | Go to buffer 7                                             |
+| Normal   | `<leader>8`                | Go to buffer 8                                             |
+| Normal   | `<leader>9`                | Go to buffer 9                                             |
+| Normal   | `[b`                       | Cycle to next buffer                                       |
+| Normal   | `b]`                       | Cycle to previous buffer                                   |
+| Normal   | `<A-S-l>`                  | Move buffer to next position                               |
+| Normal   | `<A-S-h>`                  | Move buffer to previous position                           |
+| Normal   | `<`                        | Move window to the left                                    |
+| Normal   | `>`                        | Move window to the right                                   |
+| Normal   | `<C-b>`                    | Toggle Nvim Tree                                           |
+| Insert   | `<leader>s`                | Save file                                                  |
+| Normal   | `<leader>s`                | Save file                                                  |
+| Insert   | `<C-s>`                    | Save file                                                  |
+| Insert   | `<C-z>`                    | Undo changes                                               |
+| Insert   | `<C-R>`                    | Redo changes                                               |
+| Normal   | `gd`                       | Go to definition                                           |
+| Normal   | `gD`                       | Go to declaration                                          |
+| Normal   | `<leader>k`                | Show hover documentation                                   |
+| Normal   | `gi`                       | Go to implementation                                       |
+| Normal   | `<leader>ck`               | Show signature help                                        |
+| Normal   | `<leader>wa`               | Add workspace folder                                       |
+| Normal   | `<leader>wr`               | Remove workspace folder                                    |
+| Normal   | `<leader>wl`               | List workspace folders                                     |
+| Normal   | `<leader>D`                | Go to type definition                                      |
+| Normal   | `<leader>rn`               | Rename                                                     |
+| Normal   | `gr`                       | Show references and open quickfix window                   |
+| Normal   | `<space>e`                 | Show line diagnostics                                      |
+| Normal   | `[d`                       | Go to previous diagnostic                                  |
+| Normal   | `]d`                       | Go to next diagnostic                                      |
+| Normal   | `<space>q`                 | Set location list                                          |
+| Normal   | `<leader>cf`               | Format buffer                                              |
+| Normal   | `<leader>hs`               | Stage hunk                                                 |
+| Normal   | `<leader>hr`               | Reset hunk                                                 |
+| Visual   | `<leader>hs`               | Stage hunk (selected)                                      |
+| Visual   | `<leader>hr`               | Reset hunk (selected)                                      |
+| Normal   | `<leader>hS`               | Stage buffer                                               |
+| Normal   | `<leader>hu`               | Undo stage hunk                                            |
+| Normal   | `<leader>hR`               | Reset buffer                                               |
+| Normal   | `<leader>hp`               | Preview hunk                                               |
+| Normal   | `<leader>hb`               | Blame line                                                 |
+| Normal   | `<leader>tb`               | Toggle current line blame                                  |
+| Normal   | `<leader>hd`               | Show diff                                                  |
+| Normal   | `<leader>hD`               | Show diff (with previous commit)                           |
+| Normal   | `<leader>td`               | Toggle deleted lines                                       |
+| Operator | `ih`                       | Select hunk                                                |
+| Normal   | `<leader>dd`               | Toggle DAP UI                                              |
+| Normal   | `<leader>db`               | Toggle breakpoint                                          |
+| Normal   | `<leader>dc`               | Continue debugging                                         |
+| Normal   | `<leader>di`               | Step into                                                  |
+| Normal   | `<leader>do`               | Step over                                                  |
+| Normal   | `<leader>du`               | Step out                                                   |
+| Normal   | `<leader>ff`               | Find files with Telescope                                  |
+| Normal   | `<leader>fg`               | Live grep with Telescope                                   |
+| Normal   | `<leader>fb`               | List buffers with Telescope                                |
+| Normal   | `<leader>fh`               | Find help tags with Telescope                              |
