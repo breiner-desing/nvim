@@ -1,42 +1,40 @@
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
 
-map("n", "<Space>", "", opts)
+-- 🔑 Líder y navegación básica
+map("n", "<Space>", "", { noremap = true, silent = true })
 vim.g.mapleader = " "
 
-map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-map("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-map("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+-- 📁 Árbol de archivos y búsqueda
+map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Abrir/cerrar árbol de archivos", noremap = true, silent = true })
+map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Buscar archivos", noremap = true, silent = true })
+map("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Buscar texto en proyecto", noremap = true, silent = true })
 
-map("n", "<leader>f", function() vim.lsp.buf.format() end, { noremap = true, silent = true, desc = "Formatear archivo" })
-map("n", "<leader>w", ":w<CR>", opts)
+-- 💾 Guardar y formatear
+map("n", "<leader>w", ":w<CR>", { desc = "Guardar archivo", noremap = true, silent = true })
+map("n", "<leader>f", function() vim.lsp.buf.format() end, { desc = "Formatear archivo", noremap = true, silent = true })
 
-map("n", "<A-j>", ":m .+1<CR>==", opts)
-map("n", "<A-k>", ":m .-2<CR>==", opts)
+-- 🔼🔽 Mover líneas
+map("n", "<A-j>", ":m .+1<CR>==", { desc = "Mover línea abajo", noremap = true, silent = true })
+map("n", "<A-k>", ":m .-2<CR>==", { desc = "Mover línea arriba", noremap = true, silent = true })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Mover bloque abajo", noremap = true, silent = true })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Mover bloque arriba", noremap = true, silent = true })
 
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+-- 📋 Duplicar línea o bloque
+map("n", "<leader>d", "yyp", { desc = "Duplicar línea", noremap = true, silent = true })
+map("v", "<leader>d", "y'>p", { desc = "Duplicar bloque", noremap = true, silent = true })
+map("v", "<leader>dd", "y'>pgv", { desc = "Duplicar bloque y seleccionar", noremap = true, silent = true })
 
-map("n", "<leader>d", "yyp", opts)
-map("v", "<leader>d", "y'>p", opts)
-map("v", "<leader>dd", "y'>pgv", opts)
+-- 🧠 Navegación LSP (para todos los lenguajes)
+map("n", "gd", vim.lsp.buf.definition, { desc = "Ir a definición", noremap = true, silent = true })
+map("n", "gi", vim.lsp.buf.implementation, { desc = "Ir a implementación", noremap = true, silent = true })
+map("n", "gr", vim.lsp.buf.references, { desc = "Ver referencias", noremap = true, silent = true })
+map("n", "k", vim.lsp.buf.hover, { desc = "Ver información flotante", noremap = true, silent = true })
+map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Renombrar símbolo", noremap = true, silent = true })
 
+-- 🛠️ Acciones de código
+map("n", "<leader>gs", vim.lsp.buf.code_action, { desc = "Acciones de código (Getters/Setters, etc.)", noremap = true, silent = true })
 
--- Atajos relacionados a Trouble
-map("n", "<leader>xx", function()
-    require("trouble").toggle()
-  end, { desc = "Toggle Trouble", noremap = true, silent = true })
-  
-  map("n", "<leader>xw", function()
-    require("trouble").toggle("workspace_diagnostics")
-  end, { desc = "Workspace Diagnostics", noremap = true, silent = true })
-  
-  map("n", "<leader>xd", function()
-    require("trouble").toggle("document_diagnostics")
-  end, { desc = "Document Diagnostics", noremap = true, silent = true })
-  
-  -- Atajo para acciones de LSP (como generar getters y setters)
-  map("n", "<leader>gs", function()
-    vim.lsp.buf.code_action()
-  end, { desc = "Generar Getters y Setters", noremap = true, silent = true })
-  
+-- 🚨 Diagnóstico con Trouble
+map("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Abrir Trouble", noremap = true, silent = true })
+map("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Diagnóstico del workspace", noremap = true, silent = true })
+map("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Diagnóstico del documento actual", noremap = true, silent = true })

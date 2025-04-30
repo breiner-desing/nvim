@@ -6,10 +6,10 @@ return {
   },
   config = function()
     local dap = require("dap")
-    -- local dapui = require("dapui")
+     local dapui = require("dapui")
 
-    -- 🖥️ UI de DAP
-    --dapui.setup()
+     -- 🖥️ UI de DAP
+    dapui.setup()
 
     -- 🔴 Personalizar Breakpoints visualmente
     vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'DiagnosticError', linehl = '', numhl = '' })

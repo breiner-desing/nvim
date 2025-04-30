@@ -120,7 +120,6 @@ public record %s() {
     })
 
     -- ⌨️ Atajos dentro de config
-    vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle File Tree" })
     vim.keymap.set("n", "<leader><Tab>", ":NvimTreeFocus<CR>", { desc = "Enfocar NvimTree" })
     vim.keymap.set("n", "<leader>j", new_java_file, { desc = "Nuevo archivo Java desde plantilla" })
     vim.keymap.set("n", "<leader>n", function() api.fs.create() end, { desc = "Crear archivo o carpeta" })

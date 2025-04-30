@@ -3,6 +3,14 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("gitsigns").setup({
+      current_line_blame = true,
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = "eol",
+        delay = 100,
+        ignore_whitespace = false,
+      },
+      current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
@@ -18,7 +26,8 @@ return {
 
         -- Ver cambios
         map("n", "<leader>gp", gs.preview_hunk, { desc = "Previsualizar cambio (hunk)" })
-        map("n", "<leader>gb", function() gs.blame_line({ full = true }) end, { desc = "Blame de línea actual" })
+        map("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Toggle blame de línea actual" })
+        map("n", "<leader>gB", function() gs.blame_line({ full = true }) end, { desc = "Blame detallado de línea actual" })
         map("n", "<leader>gd", gs.diffthis, { desc = "Comparar buffer con Git" })
 
         -- Stage cambios
