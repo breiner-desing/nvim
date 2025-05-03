@@ -1,4 +1,28 @@
-# README.md - Configuración Neovim Modularizada con Lazy.nvim
+# 📦 Configuración Neovim Modularizada con Lazy.nvim
+
+## 🔐 Requisitos previos (llave SSH para GitHub)
+
+Algunos plugins requieren estar autenticado con una llave SSH para ser descargados correctamente desde GitHub. Sigue estos pasos antes de abrir Neovim:
+
+1. Asegúrate de tener tu llave SSH:
+   ```bash
+   ls ~/.ssh/id_ed25519
+   ```
+
+2. Agrega la llave al agente SSH:
+   ```bash
+   ssh-add ~/.ssh/id_ed25519
+   ```
+
+3. Verifica la conexión con GitHub:
+   ```bash
+   ssh -T git@github.com
+   ```
+
+4. Consulta la documentación oficial para más detalles:
+   👉 https://docs.github.com/es/authentication/connecting-to-github-with-ssh
+
+---
 
 ## 📂 Estructura de carpetas
 
@@ -31,13 +55,11 @@
 
 ## 🌟 Lazy.nvim Plugins (declarados en lazy.lua)
 
-- nvim-lua/plenary.nvim
-- nvim-telescope/telescope.nvim
-- wiliamboman/mason.nvim
-- neovim/nvim-lspconfig
+- `nvim-lua/plenary.nvim`
+- `nvim-telescope/telescope.nvim`
+- `wiliamboman/mason.nvim`
+- `neovim/nvim-lspconfig`
 - Plugins personalizados importados de `breiner/plugins/`
-
-## ⌨️ Atajos de Teclado Configurados (keymaps.lua)
 
 ## ⌨️ Atajos de Teclado Configurados
 
@@ -84,25 +106,24 @@
 
 ## 📦 Plugins configurados
 
-- nvim-cmp
-- luasnip
-- nvim-dap
-- nvim-tree
-- treesitter
-- themes
-- lualine
-- dressing
-- codewindow
-- indent-blankline
-- comment.nvim
-- trouble.nvim
-- which-key.nvim
-- gitsigns
+- `nvim-cmp`
+- `luasnip`
+- `nvim-dap`
+- `nvim-tree`
+- `treesitter`
+- `themes`
+- `lualine`
+- `dressing`
+- `codewindow`
+- `indent-blankline`
+- `comment.nvim`
+- `trouble.nvim`
+- `which-key.nvim`
+- `gitsigns`
 
 ## 🚀 Estado Actual
 
 Configuración modularizada, optimizada para Neovim con Lazy.nvim.
 
 ---
-
 ❤️ Configuración creada por Breiner + ChatGPT 🚀

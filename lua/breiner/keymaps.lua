@@ -6,12 +6,9 @@ vim.g.mapleader = " "
 
 -- 📁 Árbol de archivos y búsqueda
 map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Abrir/cerrar árbol de archivos", noremap = true, silent = true })
-map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Buscar archivos", noremap = true, silent = true })
-map("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Buscar texto en proyecto", noremap = true, silent = true })
-
 -- 💾 Guardar y formatear
 map("n", "<leader>w", ":w<CR>", { desc = "Guardar archivo", noremap = true, silent = true })
-map("n", "<leader>f", function() vim.lsp.buf.format() end, { desc = "Formatear archivo", noremap = true, silent = true })
+map("n", "<leader>F", function() vim.lsp.buf.format() end, { desc = "Formatear archivo", noremap = true, silent = true })
 
 -- 🔼🔽 Mover líneas
 map("n", "<A-j>", ":m .+1<CR>==", { desc = "Mover línea abajo", noremap = true, silent = true })
@@ -38,3 +35,8 @@ map("n", "<leader>gs", vim.lsp.buf.code_action, { desc = "Acciones de código (G
 map("n", "<leader>xx", function() require("trouble").toggle() end, { desc = "Abrir Trouble", noremap = true, silent = true })
 map("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Diagnóstico del workspace", noremap = true, silent = true })
 map("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, { desc = "Diagnóstico del documento actual", noremap = true, silent = true })
+
+map("n", "<Tab>", ":bn<CR>", { desc = "Siguiente buffer", noremap = true, silent = true })
+map("n", "<S-Tab>", ":bp<CR>", { desc = "Buffer anterior", noremap = true, silent = true })
+
+
